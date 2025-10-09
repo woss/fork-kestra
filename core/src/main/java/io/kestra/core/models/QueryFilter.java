@@ -94,7 +94,7 @@ public record QueryFilter(
         LABELS("labels") {
             @Override
             public List<Op> supportedOp() {
-                return List.of(Op.EQUALS, Op.NOT_EQUALS);
+                return List.of(Op.EQUALS, Op.NOT_EQUALS, Op.IN, Op.NOT_IN, Op.CONTAINS);
             }
         },
         FLOW_ID("flowId") {
@@ -254,7 +254,7 @@ public record QueryFilter(
          *
          * @return List of {@code ResourceField} with resource names, fields, and operations.
          */
-        
+
         private static FieldOp toFieldInfo(Field field) {
             List<Operation> operations = field.supportedOp().stream()
                 .map(Resource::toOperation)
